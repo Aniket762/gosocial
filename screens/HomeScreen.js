@@ -1,13 +1,15 @@
 import React, { useContext } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import FormButton from '../components/FormButton';
+import auth from '@react-native-firebase/auth';
+import { useRoute } from '@react-navigation/core';
 
-const HomeScreen = () =>
+const HomeScreen = ({user}) =>
 {
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>welcome</Text>
-            <FormButton buttonTitle="Logout" onPress={() => { }} />
+            <Text style={styles.text}>Welcome ❤ </Text>
+            <FormButton buttonTitle="Logout" onPress={() => auth().signOut().then(()=>console.log('User Signed out!'))} />
         </View>
     );
 }
