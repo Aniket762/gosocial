@@ -15,6 +15,14 @@
       "oauth_client": [
         {
           "client_id": "738730657522-kg3hpd1rehh06nghoca4d2n6dd2nsnp3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gosocial",
+            "certificate_hash": "f903dab6f8f8cb677f2c46139b8c52e07a3f5d46"
+          }
+        },
+        {
+          "client_id": "738730657522-kg3hpd1rehh06nghoca4d2n6dd2nsnp3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],

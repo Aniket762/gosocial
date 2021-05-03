@@ -81,7 +81,7 @@ const SignupScreen = ({navigation}) => {
           Privacy Policy
         </Text>
       </View>
-
+      
       {Platform.OS === 'android' ? (
         <View>
           <SocialButton

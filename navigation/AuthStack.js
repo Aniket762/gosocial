@@ -5,12 +5,22 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import OnboardingScreen from '../screens/OnboardingScreen';
 import LoginScreen from '../screens/LoginScreen';
 import SignupScreen from '../screens/SignupScreen';
+import { GoogleSignin } from '@react-native-community/google-signin';
 
 const Stack = createStackNavigator();
 
 
 const AuthStack = () =>
 {
+
+
+  useEffect(() =>
+  {
+    GoogleSignin.configure({
+      webClientId: '738730657522-kg3hpd1rehh06nghoca4d2n6dd2nsnp3.apps.googleusercontent.com',
+    });
+  })
+
    return (
 
           <Stack.Navigator headerMode="none">

@@ -1,12 +1,24 @@
 import React, { useContext, useState } from 'react';
-import { Button, Text, View , StyleSheet, Image } from 'react-native';
+import { Button, Text, View , StyleSheet, Image, Platform } from 'react-native';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { AuthContext } from '../navigation/AuthProvider';
 import auth from '@react-native-firebase/auth';
+import { GoogleSignin } from '@react-native-community/google-signin';
 
+
+
+async function onGoogleButtonPress() {
+  // Get the users ID token
+  const { idToken } = await GoogleSignin.signIn();
+
+  // Create a Google credential with the token
+  const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+  // Sign-in the user with the credential
+  return auth().signInWithCredential(googleCredential);
+}
 
 
 const LoginScreen = ({navigation}) =>
@@ -60,6 +72,8 @@ const LoginScreen = ({navigation}) =>
         <Text style={styles.navButtonText}>Forgot Password?</Text>
         </TouchableOpacity>
         
+        {Platform.OS === 'android' ?(
+          
         <View>
           <SocialButton
             buttonTitle="Sign In with Facebook"
@@ -72,8 +86,10 @@ const LoginScreen = ({navigation}) =>
             buttonTitle="Sign In with Google"
             btnType="google"
             color="#de4d41"
+            onPress={() => onGoogleButtonPress().then(() => console.log('Signed in with Google!'))}
           />
         </View>
+        ): null}
 
         <TouchableOpacity
         style={styles.forgotButton}
