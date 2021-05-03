@@ -14,6 +14,7 @@
     "@react-native-firebase/auth": "^11.4.1",
     "react": "17.0.1",
     "react-native": "0.64.0",
+    "react-native-action-button": "^2.8.5",
     "styled-components": "^5.2.3"
   },
   "devDependencies": {

@@ -18,50 +18,52 @@ import {
 } from '../styles/FeedStyles';
 
 
-const PostCard = () =>
+const PostCard = ({ item }) =>
 {
-    return (<Container>
+    likeIcon = item.liked ? 'heart' : 'heart-outline';
+    likeIconColor = item.liked ? '#2e64e5' : '#333';
+    if (item.likes == 1) {
+        likeText = '1 Like';
+      } else if (item.likes > 1) {
+        likeText = item.likes + ' Likes';
+      } else {
+        likeText = 'Like';
+      }
+    
+      if (item.comments == 1) {
+        commentText = '1 Comment';
+      } else if (item.comments > 1) {
+        commentText = item.comments + ' Comments';
+      } else {
+        commentText = 'Comment';
+      }
+    return (
                <Card>
                 <UserInfo>
-                    <UserImg source={require('../assets/aniket-circle.png')} ></UserImg>
+                    <UserImg source={item.userImg} ></UserImg>
                     <UserInfoText>
-                    <UserName>Aniket Pal</UserName>
-                    <PostTime>2 hours ago</PostTime>
+                    <UserName>{ item.userName}</UserName>
+                    <PostTime>{item.postTime}</PostTime>
                     </UserInfoText>
                 </UserInfo>
-                <PostText>Hell lot of errors debugging 10 hrs for a minutes code. Don't know when I will end! Looking forward</PostText>
-                <PostImg source={require('../assets/cool-profile.png')}></PostImg>
+            <PostText>{item.post}</PostText>
+            {item.postImg != 'none' ? <PostImg source={item.postImg} /> :<Divider />}
+               
                 <InteractionWrapper>
-                    <Interaction active>
-                        <Ionicons name="heart-outline" size={25} />
-                        <InteractionText active>32 Likes</InteractionText>
+                    <Interaction active={item.liked} >
+                    <Ionicons name={likeIcon} size={25} color={ likeIconColor}/>
+                        <InteractionText active={item.liked}>{likeText}</InteractionText>
                     </Interaction>
                     <Interaction>
                         <Ionicons name="md-chatbubble-outline" size={25} />
-                        <InteractionText>Comments</InteractionText>
+                        <InteractionText>{commentText}</InteractionText>
                     </Interaction>
                 </InteractionWrapper>
-                <UserInfo>
-                    <UserImg source={require('../assets/aniket-circle.png')} ></UserImg>
-                    <UserInfoText>
-                    <UserName>Aniket Pal</UserName>
-                    <PostTime>2 hours ago</PostTime>
-                    </UserInfoText>
-                </UserInfo>
-                <PostText>Hell lot of errors debugging 10 hrs for a minutes code. Don't know when I will end! Looking forward</PostText>
-                <Divider />
-                <InteractionWrapper>
-                    <Interaction>
-                        <Ionicons name="heart-outline" size={25} />
-                        <InteractionText>Like</InteractionText>
-                    </Interaction>
-                    <Interaction>
-                        <Ionicons name="md-chatbubble-outline" size={25} />
-                        <InteractionText>Comments</InteractionText>
-                    </Interaction>
-                </InteractionWrapper>
+                
         </Card>
-        </Container>
+
                 
     );
 }
+
+export default PostCard;
